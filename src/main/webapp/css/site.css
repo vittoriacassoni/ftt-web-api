@@ -1,0 +1,161 @@
+body{
+    padding: 15px;
+    background: #fff;
+}
+
+.list{
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    box-shadow: 0 0 1em #a7a7a7;
+}
+
+.list .header{
+    background:#8A2BE2;
+    color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+}
+.list .animal{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list .animal:hover{
+    border-left: 8px solid #8A2BE2;
+    box-shadow: 0 0 1em #a7a7a7;
+}
+
+.list .animal .info{
+    display: grid;
+    grid-template-columns: 300px 200px 200px;
+    align-items: center;
+}
+
+.list .animal .action{
+    display: flex;
+}
+
+.list .animal .action button{
+    margin-right: 15px;
+}
+
+.list .animal .action button, .title button, form button{
+  padding: 6px;
+  width: auto;
+  border: none;
+  display: block;
+  outline: 0;
+  height: 40px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  background-color: inherit;
+  text-align: center;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.list .animal .action i, .title i{
+    color: #8A2BE2;
+}
+
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title button i{
+    margin-right: 15px;
+}
+
+.title button, form button{
+    border: 2px solid #8A2BE2;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+  border-radius: 8px;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; 
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 8px;
+}
+
+.modal-content form{
+    padding: 20px;
+}
+
+.modal-header{
+    display: flex;
+    justify-content: space-between;
+    background: #8A2BE2;
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    font-size: 20px;
+    align-items: center;
+}
+
+.close {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #FFF;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+form input, form select{
+  border: none;
+  border-bottom: 2px solid #8A2BE2;
+  padding: 8px;
+}
+
+form input:hover, form select:hover,
+form input:focus, form select:focus{
+    outline: none;
+}
+
+form button{
+    font-size: 18px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+form p {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    align-items: center;
+}

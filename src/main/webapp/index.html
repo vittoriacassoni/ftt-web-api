@@ -6,15 +6,94 @@
 <style>
 	body {font-family:Verdana;}
 </style>
+<link rel="stylesheet" href="css/site.css">
+<link
+      rel="stylesheet"
+      href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
+/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="js/site.js"></script>
 </head>
 <body>
-<h1>User</h1>
-<form method="post" action="/user">
-<p><label for="user-id">ID: </label><input type="number" id="user-id" name="user-id" required></p>
-<p><label for="user-name">Name: </label><input type="text" id="user-name" name="user-name" required></p>
-<p><label for="user-email">E-Mail: </label><input type="email" id="user-email" name="user-email" required></p>
-<p><label for="user-color">Color: </label><input type="color" id="user-color" name="user-color" required></p>
-<input type="submit">
-</form>
+<div class="title">
+    <h1>Animais</h1>   
+    <button onclick="addAnimal()">
+        <i class="fa fa-plus"></i>Adicionar
+    </button>
+</div>
+
+<div id="list" class="list">
+    <div class="animal">
+        <div class="info">
+            <b>Catarina</b>
+            <b>Poodle</b>
+            <b>Branca</b>
+        </div>
+        <div class="action">
+            <button onclick="editAnimal('1')">
+                <i class="fa fa-pencil"></i>
+            </button>
+            <button onclick="deleteAnimal('1')">
+                <i class="fa fa-trash"></i>
+            </button>
+        </div>
+    </div>
+    <div class="animal">
+        <div class="info">
+            <b>Catarina</b>
+            <b>Poodle</b>
+            <b>Branca</b>
+        </div>
+        <div class="action">
+            <button onclick="openPage(event,'Profile')">
+                <i class="fa fa-pencil"></i>
+            </button>
+            <button onclick="openPage(event,'Profile')">
+                <i class="fa fa-trash"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <b id="title-modal">Adicionar Animal</b>
+            <span class="close" onclick="closeModal()">&times;</span> 
+        </div>
+       
+        <form id="form" method="post" action="/animal">
+            <p>
+                <label for="animal-id">ID: </label>
+                <input type="number" id="animal-id" name="animal-id" required>
+            </p>
+            <p>
+                <label for="animal-name">Nome: </label>
+                <input type="text" id="animal-name" name="animal-name" required>
+            </p>
+            <p>
+                <label for="animal-breed">Raça: </label>
+                <select id="animal-breed" name="animal-breed" required>
+                    <option value="1">Poodle</option>
+                    <option value="2">Lulu da Pomerânia</option>
+                    <option value="3">Lhasa Apso</option>
+                    <option value="4">Shih Tzu</option>
+                    <option value="5">Maltês</option>
+                    <option value="6">Samoieda</option>
+                    <option value="7">Pug</option>
+                              
+                </select>
+            </p>
+            <p>
+                <label for="animal-color">Color: </label>
+                <input type="color" id="animal-color" name="animal-color" required>
+            </p>
+             <button type="submit" >
+                 Enviar
+            </button>
+        </form>
+    </div>
+</div>
+
 </body>
 </html>

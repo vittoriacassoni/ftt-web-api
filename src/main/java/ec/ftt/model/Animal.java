@@ -2,38 +2,28 @@ package ec.ftt.model;
 
 import java.util.Objects;
 
-//JavaBean >> Serializable, Geters Seters, default contructor, [toString, equals, hash]
-//POJO - Plain Old Java Objects
+public final class Animal {
 
-//https://www.devmedia.com.br/use-a-serializacao-em-java-com-seguranca/29012
-//https://sites.google.com/site/sureshdevang/java-bean-v-s-pojo
-//https://pt.wikipedia.org/wiki/Plain_Old_Java_Objects
-//https://pt.wikipedia.org/wiki/JavaBeans
-
-
-public class User {
-
-	private long id;
+	private long id, breed;
 	private String name,
-	               email,
 	               color;
 	
-	public User() {
+	public Animal() {
 		
 	}
-	public User(String id, String name, String email, String color) {
+	public Animal(String id, String name, String breed, String color) {
 		super();
 		setId(id);
 		setName(name);
-		setEmail(email);
+		setBreed(breed);
 		setColor(color);
 	}
 	
-	public User(long id, String name, String email, String color) {
+	public Animal(long id, String name, Long breed, String color) {
 		super();
 		setId(id);
 		setName(name);
-		setEmail(email);
+		setBreed(breed);
 		setColor(color);
 	}
 	/**
@@ -71,16 +61,24 @@ public class User {
 		this.name = name;
 	}
 	/**
-	 * @return the email
+	 * @return the breed
 	 */
-	public String getEmail() {
-		return email;
+	public long getBreed() {
+		return breed;
 	}
 	/**
-	 * @param email the email to set
+        * @param breed
 	 */
-	public void setEmail(String email) {
-		this.email = email;
+	public void setBreed(Long breed) {
+		this.breed = breed;
+	}
+        
+        public void setBreed(String breed) {
+		
+		if (breed.length()==0)
+			setBreed(Long.valueOf(0));
+		else
+			setBreed(Long.valueOf(breed));
 	}
 	/**
 	 * @return the color
@@ -97,12 +95,12 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + ", color=" + color + "]";
+		return "Animal [id=" + id + ", name=" + name + ", breed=" + breed + ", color=" + color + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(color, email, id, name);
+		return Objects.hash(color, breed, id, name);
 	}
 
 	@Override
@@ -110,12 +108,13 @@ public class User {
 		if (this == obj) {
 			return true;
 		}
-		if (!(obj instanceof User)) {
+		if (!(obj instanceof Animal)) {
 			return false;
 		}
-		User other = (User) obj;
-		return Objects.equals(color, other.color) && Objects.equals(email, other.email) && id == other.id
-				&& Objects.equals(name, other.name);
+		Animal other = (Animal) obj;
+		return Objects.equals(color, other.color) && 
+                       Objects.equals(breed, other.breed) && id == other.id &&
+                       Objects.equals(name, other.name);
 	}
 	
 	
