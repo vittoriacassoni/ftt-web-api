@@ -163,4 +163,22 @@ public class AnimalDao {
         return output;
     }
     
+    public List<Integer> CountBreedAnimals(){
+        List<Integer> breedList = new ArrayList<>();
+        
+        try {
+            String query = "SELECT count(breed) FROM ftt.ANIMAL GROUP BY breed ORDER BY breed";
+            PreparedStatement add = connection.prepareStatement(query);
+
+            ResultSet rs = add.executeQuery();     
+            while (rs.next()) {
+                
+                breedList.add(rs.getInt("count(breed)"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return breedList;
+    }
 } 

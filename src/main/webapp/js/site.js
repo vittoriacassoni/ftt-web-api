@@ -2,9 +2,64 @@ document.addEventListener("DOMContentLoaded", init, false);
 
 let animalURL = "/animal";
 
+const labels = [
+  'Poodle',
+  'Lulu da pomerânia',
+  'Lhasa Apso',
+  'Shih Tzu',
+  'Maltês',
+  'Samoieda',
+  'Pug'
+];
+
+
 function init() {
     console.log("Starting...");
     getAnimal(0);
+    
+    getDataChart();
+
+}
+
+function getDataChart(){
+    const request = new XMLHttpRequest();
+     request.open("GET", "/breed");
+
+     request.onload = function () {
+        const response = JSON.parse(this.responseText); 
+        console.log(response);
+      var data = {
+          labels: labels,
+            datasets: [{
+              label: 'Quantidade',
+              backgroundColor: 'rgb(138, 43, 226)',
+              borderColor: 'rgb(138, 43, 255)',
+              data: response,
+            }]
+      };
+      const config = {
+            type: 'bar',
+            data: data,
+            options: {
+              responsive: true,
+              plugins: {
+                legend: {
+                  position: 'top',
+                },
+                title: {
+                  display: true,
+                  text: 'As raças mais cadastradas'
+                }
+              }
+            },
+          };
+        var myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+    }
+    
+  request.send();
 }
 
 function getAnimal(id) {

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
 <title>FTT - User</title>
 <style>
 	body {font-family:Verdana;}
@@ -12,7 +13,8 @@
       href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
 />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-<script src="js/site.js"></script>
+<script src="js/site.js" charset="UTF-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <div class="title">
@@ -53,6 +55,10 @@
             </button>
         </div>
     </div>
+</div>
+    
+<div style="margin-top: 30px;">
+  <canvas id="myChart"></canvas>
 </div>
 
 <div class="modal" id="modal">
