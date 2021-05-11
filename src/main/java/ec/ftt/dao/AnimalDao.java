@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import ec.ftt.model.Animal;
 import ec.ftt.util.DBUtil;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AnimalDao {
 
@@ -165,21 +167,30 @@ public class AnimalDao {
     }
     
     public List<Integer> CountBreedAnimals(){
+        Map<Integer, Integer> breeds = new HashMap<>();
+        breeds.put(1,0);
+        breeds.put(2,0);
+        breeds.put(3,0);
+        breeds.put(4,0);
+        breeds.put(5,0);
+        breeds.put(6,0);
+        breeds.put(7,0);
+        
         List<Integer> breedList = new ArrayList<>();
         try {
             String query = "SELECT count(breed), breed FROM ftt.ANIMAL GROUP BY breed ORDER BY breed";
             PreparedStatement add = connection.prepareStatement(query);
 
             ResultSet rs = add.executeQuery();
-            int count = 1;
+            
             while (rs.next()) {
-                if(rs.getInt("breed") > count){
-                     breedList.add(0);
+                if(breeds.containsKey(rs.getInt("breed"))){
+                    breeds.put(rs.getInt("breed"), rs.getInt("count(breed)"));
                 }
-                else{
-                    breedList.add(rs.getInt("count(breed)"));
-                }
-                count++;
+            }
+            
+            for(int i = 1; i <= breeds.size(); i++){
+                breedList.add(breeds.get(i));
             }
         } catch (SQLException e) {
             e.printStackTrace();
