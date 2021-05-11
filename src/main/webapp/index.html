@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="Content-Type" content="pt-br;charset=utf-8">
 
 <title>FTT - User</title>
 <style>
@@ -13,8 +13,9 @@
       href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
 />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-<script src="js/site.js" charset="UTF-8"></script>
+<script src="js/site.js" charset="utf-8"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
 <div class="title">
@@ -69,6 +70,7 @@
         </div>
        
         <form id="form" method="post" action="/animal">
+             <input type="text" id="animal-method" name="animal-method" hidden>
             <p>
                 <label for="animal-id">ID: </label>
                 <input type="number" id="animal-id" name="animal-id" required>

@@ -4,21 +4,18 @@ let animalURL = "/animal";
 
 const labels = [
   'Poodle',
-  'Lulu da pomerânia',
+  'Lulu da pomerania',
   'Lhasa Apso',
   'Shih Tzu',
-  'Maltês',
+  'Maltes',
   'Samoieda',
   'Pug'
 ];
 
 
 function init() {
-    console.log("Starting...");
     getAnimal(0);
-    
     getDataChart();
-
 }
 
 function getDataChart(){
@@ -27,7 +24,6 @@ function getDataChart(){
 
      request.onload = function () {
         const response = JSON.parse(this.responseText); 
-        console.log(response);
       var data = {
           labels: labels,
             datasets: [{
@@ -48,7 +44,7 @@ function getDataChart(){
                 },
                 title: {
                   display: true,
-                  text: 'As raças mais cadastradas'
+                  text: 'As racas mais cadastradas'
                 }
               }
             },
@@ -56,7 +52,8 @@ function getDataChart(){
         var myChart = new Chart(
         document.getElementById('myChart'),
         config
-    );
+        );
+        myChart.reset();
     }
     
   request.send();
@@ -83,7 +80,7 @@ function createListItem(item){
         <div class="info">
             <b>${item.name}</b>
             <b>${returnBreedName(item.breed)}</b>
-            <b>${item.color}</b>
+            <b style="background: ${item.color}; color: ${item.color}">a</b>
         </div>
         <div class="action">
             <button onclick="editAnimal('${item.id}')">
@@ -103,7 +100,7 @@ function returnBreedName(breed){
           return "Poodle";
           break;
         case 2:
-            return "Lulu da Pomerânia";
+            return "Lulu da Pomerania";
             break
         case 3:
             return "Lhasa Apso";
@@ -112,7 +109,7 @@ function returnBreedName(breed){
             return "Shih Tzu";
             break;
         case 5:
-            return "Maltês";
+            return "Maltes";
             break
         case 6:
             return "Samoieda";
@@ -160,11 +157,40 @@ function editAnimal(id){
     foundAnimal(id);
     document.getElementById("title-modal").innerHTML = "Editar Animal";
     document.getElementById("modal").style.display = "block";
-    document.getElementById("form").setAttribute("method", "PUT");
 }
 
 function deleteAnimal(id){
-    document.getElementById("modal").style.display = "block";
+    Swal.fire({
+        title: 'Tem certeza?',
+        text: "Nao sera possivel reverter!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim!',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const request = new XMLHttpRequest();
+ 	      request.open("DELETE", `/animal?animalId=${id}`);
+		  request.setRequestHeader("Content-type", "application/json; charset=utf-8");
+ 	      request.onload = function () {
+ 	    	  
+ 	      }
+ 	     request.onerror = function () {
+ 	        alert("erro ao executar a requisição");
+ 	      };
+ 	      request.send();
+              
+          Swal.fire(
+            'Deletado!',
+            '',
+            'success'
+          )
+  
+        location.reload();
+        }
+      })
 }
 
 function clearAnimal(){

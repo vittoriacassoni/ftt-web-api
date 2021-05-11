@@ -89,8 +89,14 @@ public class AnimalApi extends HttpServlet {
 				);
 		
 		AnimalDao animalDao = new AnimalDao();
+                
+                if(animalDao.getAnimalById(a) != null){
+                    animalDao.updateAnimal(a);
+                }
+                else{
+                    animalDao.addAnimal(a);
+                }
 		
-		animalDao.addAnimal(a);
 		
 		System.out.println(a);
 		

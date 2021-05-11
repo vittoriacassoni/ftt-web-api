@@ -120,7 +120,7 @@ public class AnimalDao {
     	
     public Animal getAnimalById(Animal animal) {
 
-    	Animal animalOutput = new Animal();
+    	Animal animalOutput = null;
         
     	try {
             PreparedStatement preparedStatement = connection.
@@ -130,6 +130,7 @@ public class AnimalDao {
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
+                animalOutput = new Animal();
             	animalOutput.setId(rs.getLong("ID"));
             	animalOutput.setName(rs.getString("NAME"));
             	animalOutput.setBreed(rs.getLong("BREED"));
@@ -165,15 +166,20 @@ public class AnimalDao {
     
     public List<Integer> CountBreedAnimals(){
         List<Integer> breedList = new ArrayList<>();
-        
         try {
-            String query = "SELECT count(breed) FROM ftt.ANIMAL GROUP BY breed ORDER BY breed";
+            String query = "SELECT count(breed), breed FROM ftt.ANIMAL GROUP BY breed ORDER BY breed";
             PreparedStatement add = connection.prepareStatement(query);
 
-            ResultSet rs = add.executeQuery();     
+            ResultSet rs = add.executeQuery();
+            int count = 1;
             while (rs.next()) {
-                
-                breedList.add(rs.getInt("count(breed)"));
+                if(rs.getInt("breed") > count){
+                     breedList.add(0);
+                }
+                else{
+                    breedList.add(rs.getInt("count(breed)"));
+                }
+                count++;
             }
         } catch (SQLException e) {
             e.printStackTrace();
